@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuoteKit — cleaning estimate demo</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="quote.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+  <header><a class="brand" href="./index.html"><span class="mark">q</span>QuoteKit</a><span class="tag">INTERACTIVE PRODUCT DEMO</span></header>
+  <main>
+    <section class="intro"><p class="eyebrow">A SMALL TOOL FOR BUSY CLEANING TEAMS</p><h1>Less back-and-forth. <br>A clearer first enquiry.</h1><p>Let customers estimate their clean, then send you the details. <br>You set the prices. You confirm the final quote.</p></section>
+    <div class="workspace">
+      <form id="quote-form" class="card controls">
+        <div class="section-label"><span>01</span> BUILD YOUR ESTIMATE</div>
+        <h2>Tell us about your space.</h2>
+        <label for="area">Property size <span class="muted">square metres</span></label>
+        <div class="area-row"><input id="area" name="area" type="number" value="70" min="20" max="300" step="1" required><span>m²</span></div>
+        <input id="area-slider" type="range" value="70" min="20" max="300" step="1" aria-label="Property size slider">
+        <div class="range-labels"><span>20 m²</span><span>300 m²</span></div>
+        <fieldset><legend>Type of clean</legend><div class="service-grid">
+          <label class="choice"><input type="radio" name="service" value="standard" checked><span><strong>Standard</strong><small>A regular refresh</small></span></label>
+          <label class="choice"><input type="radio" name="service" value="deep"><span><strong>Deep clean</strong><small>More time on the details</small></span></label>
+        </div></fieldset>
+        <fieldset><legend>Add the finishing touches</legend>
+          <label class="extra"><span><input type="checkbox" name="extras" value="oven"> Inside the oven</span><span id="oven-price"></span></label>
+          <label class="extra"><span><input type="checkbox" name="extras" value="fridge"> Inside the fridge</span><span id="fridge-price"></span></label>
+        </fieldset>
+        <p class="small">For post-construction cleaning, unusual access or heavy soiling, request a manual quote.</p>
+      </form>
+      <aside class="card summary">
+        <div class="section-label"><span>02</span> YOUR ESTIMATE</div>
+        <p class="summary-title" id="business-name">Your Cleaning Co.</p>
+        <div class="total" id="total" aria-live="polite">€105.00</div>
+        <p class="muted">Indicative total · subject to confirmation</p>
+        <div id="breakdown" class="breakdown"></div>
+        <div class="note"><span class="note-dot"></span><p>No payment or reservation is made here. The cleaning team confirms the scope, availability and final price.</p></div>
+        <button id="copy" class="primary" type="button">Copy enquiry <span>↗</span></button>
+        <p id="copy-status" role="status" class="small">Demo prices only. Nothing is sent automatically.</p>
+        <details><summary>Read the enquiry</summary><textarea id="enquiry" readonly aria-label="Your enquiry text" rows="7"></textarea></details>
+      </aside>
+    </div>
+    <section class="owner card"><div><p class="eyebrow">TRY THE BUSINESS SIDE</p><h2>Your rates. Your rules.</h2><p class="muted">Change the example prices and watch the estimate update.<br>These controls are for this demonstration.</p></div>
+      <form id="owner-form">
+        <label>Business name<input id="name" value="Your Cleaning Co." maxlength="70" required></label>
+        <label>Standard rate / m² (€)<input id="rate" type="number" value="1.50" min="0.01" max="100" step="0.01" required></label>
+        <label>Deep clean multiplier<input id="multiplier" type="number" value="1.6" min="1" max="5" step="0.1" required></label>
+        <label>Minimum clean (€)<input id="minimum" type="number" value="60" min="0" max="10000" step="0.01" required></label>
+        <button type="submit" class="secondary">Apply example rates</button>
+        <p class="small" id="owner-status" role="status">Minimum applies to the clean; extras are added afterwards.</p>
+      </form>
+    </section>
+    <footer>QuoteKit concept · Built for a three-day sales test · No real business is represented</footer>
+  </main>
+</body>
+</html>
