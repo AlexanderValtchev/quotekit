@@ -1,56 +1,63 @@
 <!doctype html>
-<html lang="en">
+<html lang="bg">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>QuoteKit — cleaning estimate demo</title>
+  <title>QuoteKit — демо калкулатор за почистване</title>
   <link rel="stylesheet" href="style.css">
-  <script src="quote.js" defer></script><script src="app.js" defer></script>
+  <script src="quote.js" defer></script><script src="i18n.js" defer></script><script src="app.js" defer></script>
 </head>
 <body>
-  <header><a class="brand" href="./index.html"><span class="mark">q</span>QuoteKit</a><span class="tag">INTERACTIVE PRODUCT DEMO</span></header>
+  <header><a class="brand" href="./index.html"><span class="mark">q</span>QuoteKit</a>
+    <div class="head-right">
+      <span class="tag" data-i18n="tag">ИНТЕРАКТИВНО ДЕМО</span>
+      <div class="lang" role="group" aria-label="Език / Language">
+        <button type="button" id="lang-bg" class="on" data-lang="bg">БГ</button><button type="button" id="lang-en" data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
   <main>
-    <section class="intro"><p class="eyebrow">A SMALL TOOL FOR BUSY CLEANING TEAMS</p><h1>Less back-and-forth. <br>A clearer first enquiry.</h1><p>Let customers estimate their clean, then send you the details. <br>You set the prices. You confirm the final quote.</p></section>
+    <section class="intro"><p class="eyebrow" data-i18n="eyebrow">МАЛЪК ИНСТРУМЕНТ ЗА ЗАЕТИ ФИРМИ ЗА ПОЧИСТВАНЕ</p><h1 data-i18n-html="h1">По-малко въпроси. <br>По-ясно запитване.</h1><p data-i18n-html="intro">Клиентът сам изчислява почистването и ви изпраща детайлите. <br>Вие задавате цените. Вие потвърждавате офертата.</p></section>
     <div class="workspace">
       <form id="quote-form" class="card controls">
-        <div class="section-label"><span>01</span> BUILD YOUR ESTIMATE</div>
-        <h2>Tell us about your space.</h2>
-        <label for="area">Property size <span class="muted">square metres</span></label>
-        <div class="area-row"><input id="area" name="area" type="number" value="70" min="20" max="300" step="1" required><span>m²</span></div>
-        <input id="area-slider" type="range" value="70" min="20" max="300" step="1" aria-label="Property size slider">
-        <div class="range-labels"><span>20 m²</span><span>300 m²</span></div>
-        <fieldset><legend>Type of clean</legend><div class="service-grid">
-          <label class="choice"><input type="radio" name="service" value="standard" checked><span><strong>Standard</strong><small>A regular refresh</small></span></label>
-          <label class="choice"><input type="radio" name="service" value="deep"><span><strong>Deep clean</strong><small>More time on the details</small></span></label>
+        <div class="section-label"><span>01</span> <span data-i18n="s01">ИЗЧИСЛЕТЕ ОФЕРТА</span></div>
+        <h2 data-i18n="h2a">Разкажете ни за помещението.</h2>
+        <label for="area"><span data-i18n="areaLabel">Площ</span> <span class="muted" data-i18n="areaUnit">квадратни метри</span></label>
+        <div class="area-row"><input id="area" name="area" type="number" value="70" min="20" max="300" step="1" required><span data-i18n="unit">м²</span></div>
+        <input id="area-slider" type="range" value="70" min="20" max="300" step="1" data-i18n-aria="sliderLabel" aria-label="Плъзгач за площта">
+        <div class="range-labels"><span>20 <span data-i18n="unit">м²</span></span><span>300 <span data-i18n="unit">м²</span></span></div>
+        <fieldset><legend data-i18n="legendService">Вид почистване</legend><div class="service-grid">
+          <label class="choice"><input type="radio" name="service" value="standard" checked><span><strong data-i18n="standard">Стандартно</strong><small data-i18n="standardHint">Обичайно освежаване</small></span></label>
+          <label class="choice"><input type="radio" name="service" value="deep"><span><strong data-i18n="deep">Основно</strong><small data-i18n="deepHint">Повече време за детайлите</small></span></label>
         </div></fieldset>
-        <fieldset><legend>Add the finishing touches</legend>
-          <label class="extra"><span><input type="checkbox" name="extras" value="oven"> Inside the oven</span><span id="oven-price"></span></label>
-          <label class="extra"><span><input type="checkbox" name="extras" value="fridge"> Inside the fridge</span><span id="fridge-price"></span></label>
+        <fieldset><legend data-i18n="legendExtras">Добавете допълнения</legend>
+          <label class="extra"><span><input type="checkbox" name="extras" value="oven"> <span data-i18n="oven">Фурна отвътре</span></span><span id="oven-price"></span></label>
+          <label class="extra"><span><input type="checkbox" name="extras" value="fridge"> <span data-i18n="fridge">Хладилник отвътре</span></span><span id="fridge-price"></span></label>
         </fieldset>
-        <p class="small">For post-construction cleaning, unusual access or heavy soiling, request a manual quote.</p>
+        <p class="small" data-i18n="manual">За почистване след ремонт, труден достъп или силно замърсяване поискайте индивидуална оферта.</p>
       </form>
       <aside class="card summary">
-        <div class="section-label"><span>02</span> YOUR ESTIMATE</div>
-        <p class="summary-title" id="business-name">Your Cleaning Co.</p>
+        <div class="section-label"><span>02</span> <span data-i18n="s02">ВАШАТА ОФЕРТА</span></div>
+        <p class="summary-title" id="business-name">Вашата фирма за почистване</p>
         <div class="total" id="total" aria-live="polite">€105.00</div>
-        <p class="muted">Indicative total · subject to confirmation</p>
+        <p class="muted" data-i18n="indicative">Ориентировъчна сума · подлежи на потвърждение</p>
         <div id="breakdown" class="breakdown"></div>
-        <div class="note"><span class="note-dot"></span><p>No payment or reservation is made here. The cleaning team confirms the scope, availability and final price.</p></div>
-        <button id="copy" class="primary" type="button">Copy enquiry <span>↗</span></button>
-        <p id="copy-status" role="status" class="small">Demo prices only. Nothing is sent automatically.</p>
-        <details><summary>Read the enquiry</summary><textarea id="enquiry" readonly aria-label="Your enquiry text" rows="7"></textarea></details>
+        <div class="note"><span class="note-dot"></span><p data-i18n="note">Тук не се извършва плащане или резервация. Фирмата потвърждава обхвата, свободните часове и крайната цена.</p></div>
+        <button id="copy" class="primary" type="button"><span data-i18n="copyBtn">Копирай запитването</span> <span>↗</span></button>
+        <p id="copy-status" role="status" class="small">Примерни цени. Нищо не се изпраща автоматично.</p>
+        <details><summary data-i18n="readEnquiry">Виж запитването</summary><textarea id="enquiry" readonly data-i18n-aria="enquiryLabel" aria-label="Текст на запитването" rows="7"></textarea></details>
       </aside>
     </div>
-    <section class="owner card"><div><p class="eyebrow">TRY THE BUSINESS SIDE</p><h2>Your rates. Your rules.</h2><p class="muted">Change the example prices and watch the estimate update.<br>These controls are for this demonstration.</p></div>
+    <section class="owner card"><div><p class="eyebrow" data-i18n="ownerEyebrow">ПОГЛЕД ОТ СТРАНА НА ФИРМАТА</p><h2 data-i18n="ownerH2">Вашите тарифи. Вашите правила.</h2><p class="muted" data-i18n-html="ownerP">Променете примерните цени и вижте как се обновява офертата.<br>Тези настройки са само за демонстрацията.</p></div>
       <form id="owner-form">
-        <label>Business name<input id="name" value="Your Cleaning Co." maxlength="70" required></label>
-        <label>Standard rate / m² (€)<input id="rate" type="number" value="1.50" min="0.01" max="100" step="0.01" required></label>
-        <label>Deep clean multiplier<input id="multiplier" type="number" value="1.6" min="1" max="5" step="0.1" required></label>
-        <label>Minimum clean (€)<input id="minimum" type="number" value="60" min="0" max="10000" step="0.01" required></label>
-        <button type="submit" class="secondary">Apply example rates</button>
-        <p class="small" id="owner-status" role="status">Minimum applies to the clean; extras are added afterwards.</p>
+        <label><span data-i18n="nameLabel">Име на фирмата</span><input id="name" value="Вашата фирма за почистване" maxlength="70" required></label>
+        <label><span data-i18n="rateLabel">Стандартна тарифа / м² (€)</span><input id="rate" type="number" value="1.50" min="0.01" max="100" step="0.01" required></label>
+        <label><span data-i18n="multLabel">Коефициент за основно почистване</span><input id="multiplier" type="number" value="1.6" min="1" max="5" step="0.1" required></label>
+        <label><span data-i18n="minLabel">Минимална сума (€)</span><input id="minimum" type="number" value="60" min="0" max="10000" step="0.01" required></label>
+        <button type="submit" class="secondary" data-i18n="applyBtn">Приложи примерните тарифи</button>
+        <p class="small" id="owner-status" role="status">Минималната сума важи за почистването; допълненията се добавят след това.</p>
       </form>
     </section>
-    <footer>QuoteKit concept · Built for a three-day sales test · No real business is represented</footer>
+    <footer data-i18n="footer">QuoteKit концепция · Направено за тридневен тест · Не представя реална фирма</footer>
   </main>
 </body>
 </html>
